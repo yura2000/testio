@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "892764922488",
+    "firebase_url": "https://testiotestio.firebaseio.com",
+    "project_id": "testiotestio",
+    "storage_bucket": "testiotestio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892764922488:android:d554741785ade176",
+        "android_client_info": {
+          "package_name": "com.testio.testio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892764922488-88fc14a9ofubuk7jvsaap6hbc7nh4riu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.testio.testio",
+            "certificate_hash": "e89d5a85e7d99cd6b865d190c2c2e8627f56dcb3"
+          }
+        },
+        {
+          "client_id": "892764922488-hpls19s8cev92qc184gu2vb0htfnu5mc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc29oi-qBPTjmCGoWCrNQUsoTooTlIqnw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892764922488-hpls19s8cev92qc184gu2vb0htfnu5mc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
