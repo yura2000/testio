@@ -19,12 +19,10 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
     }
 
     override fun getData(topicId: String?, count: Int?) {
-        Log.d(TAG, "NYYYY123")
         mTestRemoteDataSource?.getData(topicId, count)
     }
 
-    override fun loadData(value: String?) {
-        Log.d(TAG, "NYYYY$value")
-        mTestView?.showData(value)
+    override fun loadData(value: String?, valueArray: MutableList<String>?) {
+        mTestView?.showData(value, valueArray)
     }
 }

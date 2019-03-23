@@ -48,9 +48,14 @@ class TestFragment : Fragment(), TestContract.View {
         presenter?.getData(mTopicId, count)
     }
 
-    override fun showData(value: String?) {
-        Log.d(TAG, "$value")
+    override fun showData(value: String?, valueArray: MutableList<String>?) {
+
         titleTest_tv.text = value
+        answerOne_rb.text = valueArray?.get(0)
+        answerTwo_rb.text = valueArray?.get(1)
+        answerThree_rb.text = valueArray?.get(2)
+        answerFour_rb.text = valueArray?.get(3)
+
         next_btn.setOnClickListener {
             count = count?.inc()
             presenter?.getData(mTopicId, count)
