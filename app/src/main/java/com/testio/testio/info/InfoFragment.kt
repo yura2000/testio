@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ import kotlinx.android.synthetic.main.info_fragment.*
 class InfoFragment : Fragment() {
 
     private lateinit var callback: InfoClickListener
+    private var mTopicTitle: String? = null
+    private val TAG = "MyActivity"
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -22,6 +25,10 @@ class InfoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val args = arguments
+        val topicTitle = args?.getString("TOPIC_TITLE")
+
+        mTopicTitle = topicTitle
     }
 
     override fun onCreateView(
@@ -34,6 +41,7 @@ class InfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        infoTitle_tv.text = mTopicTitle
         infoButton_btn.setOnClickListener { callback.onStartClicked() }
     }
 }

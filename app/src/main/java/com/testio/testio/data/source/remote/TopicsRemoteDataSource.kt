@@ -8,9 +8,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.testio.testio.data.Item
 
 class TopicsRemoteDataSource : TopicsDataSource {
-
-    var db = FirebaseFirestore.getInstance()
-
     private var presenter: TopicsContract.Presenter? = null
     private val TAG = "MyActivity"
 
