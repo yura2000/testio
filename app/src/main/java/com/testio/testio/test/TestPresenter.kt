@@ -1,6 +1,8 @@
 package com.testio.testio.test
 
-import android.util.Log
+import android.widget.RadioGroup
+import com.google.common.collect.BiMap
+import com.google.common.collect.HashBiMap
 import com.testio.testio.data.source.TestDataSource
 
 class TestPresenter(testView: TestContract.View, testData: TestDataSource)
@@ -22,7 +24,20 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
         mTestRemoteDataSource?.getData(topicId, count)
     }
 
-    override fun loadData(value: String?, valueArray: MutableList<String>?) {
-        mTestView?.showData(value, valueArray)
+    override fun loadData(value: String?, valueArray: BiMap<Int, String>?) {
+        val shuffledKeys = valueArray?.keys?.shuffled()
+        val mValueArray: BiMap<Int, String>? = HashBiMap.create()
+        mValueArray?.put(shuffledKeys!![0], valueArray[shuffledKeys[0]])
+        mValueArray?.put(shuffledKeys!![1], valueArray[shuffledKeys[1]])
+        mValueArray?.put(shuffledKeys!![2], valueArray[shuffledKeys[2]])
+        mValueArray?.put(shuffledKeys!![3], valueArray[shuffledKeys[3]])
+
+        mTestView?.showData(value, mValueArray, shuffledKeys)
+    }
+
+    override fun isRadioButtonClicked(answerRg: RadioGroup): Boolean {
+        if (answerRg.checkedRadioButtonId == -1)
+            return false
+        return true
     }
 }

@@ -1,17 +1,21 @@
 package com.testio.testio.test
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.common.collect.BiMap
+import com.google.common.collect.HashBiMap
 
-import com.testio.testio.R
-import com.testio.testio.data.Item
 import kotlinx.android.synthetic.main.test_fragment.*
+import java.util.*
+
 
 class TestFragment : Fragment(), TestContract.View {
 
@@ -39,7 +43,7 @@ class TestFragment : Fragment(), TestContract.View {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.test_fragment, container, false)
+        return inflater.inflate(com.testio.testio.R.layout.test_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,18 +52,25 @@ class TestFragment : Fragment(), TestContract.View {
         presenter?.getData(mTopicId, count)
     }
 
-    override fun showData(value: String?, valueArray: MutableList<String>?) {
+    override fun showData(value: String?, valueArray: BiMap<Int, String>?, shuffledKeys: List<Int>?) {
 
         titleTest_tv.text = value
-        answerOne_rb.text = valueArray?.get(0)
-        answerTwo_rb.text = valueArray?.get(1)
-        answerThree_rb.text = valueArray?.get(2)
-        answerFour_rb.text = valueArray?.get(3)
+        answerOne_rb.text = valueArray!![shuffledKeys!![0]].toString()
+        answerTwo_rb.text = valueArray[shuffledKeys[1]].toString()
+        answerThree_rb.text = valueArray[shuffledKeys[2]].toString()
+        answerFour_rb.text = valueArray[shuffledKeys[3]].toString()
 
         next_btn.setOnClickListener {
-            count = count?.inc()
-            presenter?.getData(mTopicId, count)
+            if (presenter?.isRadioButtonClicked(answers_rb)!!) {
+                count = count?.inc()
+                presenter?.getData(mTopicId, count)
+                answers_rb.clearCheck()
+                next_btn.setBackgroundColor(Color.argb(255, 84, 177, 169))
+            } else {
+                next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
+            }
         }
+
     }
 
     override fun showGetDataError(resId: Int) {
@@ -67,7 +78,7 @@ class TestFragment : Fragment(), TestContract.View {
     }
 
     override fun setPresenter(presenter: TestContract.Presenter) {
-       this.presenter = presenter
+        this.presenter = presenter
     }
 
     override fun onPause() {
