@@ -2,19 +2,16 @@ package com.testio.testio.test
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import com.google.common.collect.BiMap
-import com.google.common.collect.HashBiMap
 
 import kotlinx.android.synthetic.main.test_fragment.*
-import java.util.*
 
 
 class TestFragment : Fragment(), TestContract.View {
@@ -55,13 +52,19 @@ class TestFragment : Fragment(), TestContract.View {
     override fun showData(value: String?, valueArray: BiMap<Int, String>?, shuffledKeys: List<Int>?) {
 
         titleTest_tv.text = value
-        answerOne_rb.text = valueArray!![shuffledKeys!![0]].toString()
-        answerTwo_rb.text = valueArray[shuffledKeys[1]].toString()
-        answerThree_rb.text = valueArray[shuffledKeys[2]].toString()
-        answerFour_rb.text = valueArray[shuffledKeys[3]].toString()
+        answer1_rb.text = valueArray!![shuffledKeys!![0]].toString()
+        answer2_rb.text = valueArray[shuffledKeys[1]].toString()
+        answer3_rb.text = valueArray[shuffledKeys[2]].toString()
+        answer4_rb.text = valueArray[shuffledKeys[3]].toString()
 
         next_btn.setOnClickListener {
             if (presenter?.isRadioButtonClicked(answers_rb)!!) {
+                val selectedId = answers_rb.checkedRadioButtonId
+                val selectedRadioButton: RadioButton = view!!.findViewById(selectedId)
+                if (presenter?.isClickedCorrectRadioButton(selectedRadioButton.text.toString())!!)
+                    Log.d(TAG, "CORRECT")
+                else
+                    Log.d(TAG, "NOT CORRECT")
                 count = count?.inc()
                 presenter?.getData(mTopicId, count)
                 answers_rb.clearCheck()

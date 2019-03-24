@@ -24,21 +24,29 @@
                 android:id="@+id/answers_rb" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
             <RadioButton
-                    android:text="RadioButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/answerOne_rb" android:layout_weight="1"/>
+                    android:buttonTint="@color/buttonStart"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/answer1_rb"
+                    android:layout_weight="1"/>
             <RadioButton
-                    android:text="RadioButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/answerTwo_rb" android:layout_weight="1"/>
+                    android:buttonTint="@color/buttonStart"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/answer2_rb"
+                    android:layout_weight="1"/>
             <RadioButton
-                    android:text="RadioButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/answerThree_rb" android:layout_weight="1"/>
+                    android:buttonTint="@color/buttonStart"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/answer3_rb"
+                    android:layout_weight="1"/>
             <RadioButton
-                    android:text="RadioButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/answerFour_rb" android:layout_weight="1"/>
+                    android:buttonTint="@color/buttonStart"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/answer4_rb"
+                    android:layout_weight="1"/>
         </RadioGroup>
         <Button
                 android:text="Button"

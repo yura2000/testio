@@ -1,5 +1,6 @@
 package com.testio.testio.test
 
+import android.view.View
 import android.widget.RadioGroup
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
@@ -11,6 +12,7 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
     private var mTestRemoteDataSource: TestDataSource? = null
     private var mTestView: TestContract.View? = null
     private var TAG = "MyBitch"
+    private val mValueArray: BiMap<Int, String>? = HashBiMap.create()
 
     init {
         mTestView = testView
@@ -26,7 +28,7 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
 
     override fun loadData(value: String?, valueArray: BiMap<Int, String>?) {
         val shuffledKeys = valueArray?.keys?.shuffled()
-        val mValueArray: BiMap<Int, String>? = HashBiMap.create()
+
         mValueArray?.put(shuffledKeys!![0], valueArray[shuffledKeys[0]])
         mValueArray?.put(shuffledKeys!![1], valueArray[shuffledKeys[1]])
         mValueArray?.put(shuffledKeys!![2], valueArray[shuffledKeys[2]])
@@ -39,5 +41,11 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
         if (answerRg.checkedRadioButtonId == -1)
             return false
         return true
+    }
+
+    override fun isClickedCorrectRadioButton(value: String?): Boolean {
+        if (mValueArray?.inverse()?.get(value) == 1)
+            return true
+        return false
     }
 }

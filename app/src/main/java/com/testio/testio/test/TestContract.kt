@@ -14,5 +14,6 @@ interface TestContract {
         fun getData(topicId: String?, count: Int?)
         fun loadData(value: String?, valueArray: BiMap<Int, String>?)
         fun isRadioButtonClicked(answerRg: RadioGroup): Boolean
+        fun isClickedCorrectRadioButton(value: String?): Boolean
     }
 }
