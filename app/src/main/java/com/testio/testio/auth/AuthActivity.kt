@@ -22,8 +22,8 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(com.testio.testio.R.layout.auth_activity)
 
-        signin_btn.setOnClickListener(this)
-        signup_btn.setOnClickListener(this)
+        sign_in_btn.setOnClickListener(this)
+        sign_up_btn.setOnClickListener(this)
 
         FirebaseApp.initializeApp(this)
 
@@ -109,8 +109,8 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         val i = v.id
         when (i) {
-            com.testio.testio.R.id.signup_btn -> createAccount(email_et.text.toString(), password_et.text.toString())
-            com.testio.testio.R.id.signin_btn -> signIn(email_et.text.toString(), password_et.text.toString())
+            com.testio.testio.R.id.sign_up_btn -> createAccount(email_et.text.toString(), password_et.text.toString())
+            com.testio.testio.R.id.sign_in_btn -> signIn(email_et.text.toString(), password_et.text.toString())
         }
     }
 }

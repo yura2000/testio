@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="buttonStart">#54B1A9</color>
     <color name="buttonStartText">#F4FAF9</color>
+    <color name="backgroundMain">#2A4540</color>
+    <color name="formsMain">#9DCCB8</color>
+    <color name="formsTextMain">#FCFDFC</color>
+    <color name="buttonColorMain">#009B83</color>
 </resources>

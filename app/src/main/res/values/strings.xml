@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Testio</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="signin">SignIn</string>
-    <string name="signup">SignUp</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="signin">Вхід</string>
+    <string name="signup">Реєстрація</string>
     <string name="title">Тема:</string>
     <string name="start">Старт</string>
 
