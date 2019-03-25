@@ -5,7 +5,7 @@ import com.testio.testio.data.Item
 interface MainScreenContract {
     interface View {
         fun startTopicsFragment()
-        fun startInfoFragment(item: Item?)
+        fun startInfoFragment(item: Item?, mUserId: String)
         fun startTestFragment()
     }
 }

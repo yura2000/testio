@@ -1,5 +1,5 @@
 package com.testio.testio.test
 
 interface TestClickListener {
-    fun onNextClicked()
+    fun onResultClicked(correctAnswers: Int?, unCorrectAnswers: Int?)
 }

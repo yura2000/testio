@@ -18,21 +18,28 @@ class TestFragment : Fragment(), TestContract.View {
 
     private var presenter: TestContract.Presenter? = null
     private var mTopicId: String? = null
-    private var count: Int? = 1
+    private var count: Int = 1
     private var TAG = "MyFRAGGG"
+    private lateinit var callback: TestClickListener
+    private var correctAnswers: Int? = 0
+    private var unCorrectAnswers: Int? = 0
+    private var mUserId: String? = ""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        callback = context as TestClickListener
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val args = arguments
+        val userId = args?.getString("USER_ID")
         val topicId = args?.getString("TOPIC_ID")
 
-        Log.d(TAG, "$topicId, $count")
+        Log.d(TAG, "userid $userId, $count")
         mTopicId = topicId
+        mUserId = userId
     }
 
     override fun onCreateView(
@@ -46,8 +53,11 @@ class TestFragment : Fragment(), TestContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        presenter?.getDocumentsCount(mTopicId)
         presenter?.getData(mTopicId, count)
     }
+
+    override var documentsCount: Int? = presenter?.getDocumentsCount(mTopicId)
 
     override fun showData(value: String?, valueArray: BiMap<Int, String>?, shuffledKeys: List<Int>?) {
 
@@ -57,23 +67,40 @@ class TestFragment : Fragment(), TestContract.View {
         answer3_rb.text = valueArray[shuffledKeys[2]].toString()
         answer4_rb.text = valueArray[shuffledKeys[3]].toString()
 
-        next_btn.setOnClickListener {
-            if (presenter?.isRadioButtonClicked(answers_rb)!!) {
-                val selectedId = answers_rb.checkedRadioButtonId
-                val selectedRadioButton: RadioButton = view!!.findViewById(selectedId)
-                if (presenter?.isClickedCorrectRadioButton(selectedRadioButton.text.toString())!!)
-                    Log.d(TAG, "CORRECT")
-                else
-                    Log.d(TAG, "NOT CORRECT")
-                count = count?.inc()
-                presenter?.getData(mTopicId, count)
-                answers_rb.clearCheck()
-                next_btn.setBackgroundColor(Color.argb(255, 84, 177, 169))
-            } else {
-                next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
+     //   val test = documentsCount?.compareTo(count)!!
+
+        if (-1 > 0) {
+            next_btn.setOnClickListener {
+                if (presenter?.isRadioButtonClicked(answers_rb)!!) {
+                    val selectedRadioButton: RadioButton = view!!.findViewById(answers_rb.checkedRadioButtonId)
+                    if (presenter?.isClickedCorrectRadioButton(selectedRadioButton.text.toString())!!)
+                        correctAnswers = correctAnswers?.inc()
+                    else
+                        unCorrectAnswers = unCorrectAnswers?.inc()
+                    count = count.inc()
+                    presenter?.getData(mTopicId, count)
+                    answers_rb.clearCheck()
+                    next_btn.setBackgroundColor(Color.argb(255, 84, 177, 169))
+                } else {
+                    next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
+                }
+            }
+        } else if (1 == 1) {
+            next_btn.text = "Results"
+            next_btn.setOnClickListener {
+                if (presenter?.isRadioButtonClicked(answers_rb)!!) {
+                    val selectedRadioButton: RadioButton = view!!.findViewById(answers_rb.checkedRadioButtonId)
+                    if (presenter?.isClickedCorrectRadioButton(selectedRadioButton.text.toString())!!)
+                        correctAnswers = correctAnswers?.inc()
+                    else
+                        unCorrectAnswers = unCorrectAnswers?.inc()
+                    presenter?.saveUserData(correctAnswers, unCorrectAnswers, mUserId)
+                    callback.onResultClicked(correctAnswers, unCorrectAnswers)
+                } else {
+                    next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
+                }
             }
         }
-
     }
 
     override fun showGetDataError(resId: Int) {

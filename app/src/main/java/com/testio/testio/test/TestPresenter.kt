@@ -1,6 +1,5 @@
 package com.testio.testio.test
 
-import android.view.View
 import android.widget.RadioGroup
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
@@ -47,5 +46,13 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
         if (mValueArray?.inverse()?.get(value) == 1)
             return true
         return false
+    }
+
+    override fun getDocumentsCount(topicId: String?) : Int? {
+        return mTestRemoteDataSource?.getDocumentsCount(topicId)
+    }
+
+    override fun saveUserData(correctAnswers: Int?, unCorrectAnswers: Int?, userId: String?) {
+        mTestRemoteDataSource?.saveUserData(correctAnswers, unCorrectAnswers, userId)
     }
 }

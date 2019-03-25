@@ -41,6 +41,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("USER_ID", task.result?.user?.uid)
                     startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -64,6 +65,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("USER_ID", task.result?.user?.uid)
                     startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.
