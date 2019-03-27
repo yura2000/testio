@@ -9,4 +9,9 @@
     <color name="formsMain">#9DCCB8</color>
     <color name="formsTextMain">#FCFDFC</color>
     <color name="buttonColorMain">#009B83</color>
+    <color name="backgroundTopics">#333D39</color>
+    <color name="itemTopics">#8DAFB8</color>
+    <color name="correct">#ABFF99</color>
+    <color name="inCorrect">#FF9999</color>
+    <color name="textCorrect">#414141</color>
 </resources>

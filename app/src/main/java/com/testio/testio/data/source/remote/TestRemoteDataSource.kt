@@ -6,11 +6,6 @@ import com.google.common.collect.HashBiMap
 import com.google.firebase.firestore.FirebaseFirestore
 import com.testio.testio.data.source.TestDataSource
 import com.testio.testio.test.TestContract
-import android.support.annotation.NonNull
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.firebase.firestore.DocumentReference
-import com.google.android.gms.tasks.OnSuccessListener
-
 
 
 class TestRemoteDataSource : TestDataSource {
@@ -52,10 +47,9 @@ class TestRemoteDataSource : TestDataSource {
             }
     }
 
-    override fun getDocumentsCount(topicId: String?) : Int? {
+    override fun getDocumentsCount(topicId: String?) {
         val db = FirebaseFirestore.getInstance()
         var documentsCount: Int? = 0
-        Log.d(TAG, "$documentsCount")
 
         db.collection("topics/topic$topicId/questions$topicId")
             .get()
@@ -67,17 +61,16 @@ class TestRemoteDataSource : TestDataSource {
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
-
+                presenter?.documentsCount = documentsCount
             }
-        return documentsCount
     }
 
-    override fun saveUserData(correctAnswers: Int?, unCorrectAnswers: Int?, userId: String?) {
+    override fun saveUserData(correctAnswers: Int?, inCorrectAnswers: Int?, userId: String?) {
         val db = FirebaseFirestore.getInstance()
 
         val user = HashMap<String, String>()
         user["correct"] = "$correctAnswers"
-        user["un_correct"] = "$unCorrectAnswers"
+        user["in_correct"] = "$inCorrectAnswers"
 
         db.collection("users_results").document("$userId").set(user)
     }

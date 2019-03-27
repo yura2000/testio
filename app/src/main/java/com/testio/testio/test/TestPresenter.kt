@@ -1,5 +1,6 @@
 package com.testio.testio.test
 
+import android.util.Log
 import android.widget.RadioGroup
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
@@ -48,11 +49,15 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
         return false
     }
 
+    override var documentsCount: Int? = 0
+
     override fun getDocumentsCount(topicId: String?) : Int? {
-        return mTestRemoteDataSource?.getDocumentsCount(topicId)
+        mTestRemoteDataSource?.getDocumentsCount(topicId)
+        Log.d(TAG, "$documentsCount")
+        return documentsCount
     }
 
-    override fun saveUserData(correctAnswers: Int?, unCorrectAnswers: Int?, userId: String?) {
-        mTestRemoteDataSource?.saveUserData(correctAnswers, unCorrectAnswers, userId)
+    override fun saveUserData(correctAnswers: Int?, inCorrectAnswers: Int?, userId: String?) {
+        mTestRemoteDataSource?.saveUserData(correctAnswers, inCorrectAnswers, userId)
     }
 }

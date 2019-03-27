@@ -4,7 +4,7 @@ import com.testio.testio.test.TestContract
 
 interface TestDataSource {
     fun getData(topicId: String?, count: Int?)
-    fun getDocumentsCount(topicId: String?) : Int?
+    fun getDocumentsCount(topicId: String?)
     fun setPresenter(presenter: TestContract.Presenter)
-    fun saveUserData(correctAnswers: Int?, unCorrectAnswers: Int?, userId: String?)
+    fun saveUserData(correctAnswers: Int?, inCorrectAnswers: Int?, userId: String?)
 }

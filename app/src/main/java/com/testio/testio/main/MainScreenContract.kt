@@ -7,5 +7,6 @@ interface MainScreenContract {
         fun startTopicsFragment()
         fun startInfoFragment(item: Item?, mUserId: String)
         fun startTestFragment()
+        fun startResultsFragment(correctAnswers: Int?, inCorrectAnswers: Int?)
     }
 }
