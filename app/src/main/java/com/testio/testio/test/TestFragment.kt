@@ -68,8 +68,8 @@ class TestFragment : Fragment(), TestContract.View {
 
         val test = documentsCount?.compareTo(count)
         Log.d(TAG, "$documentsCount, $test")
-        if (test != null)
-            if (test > 0) {
+        //if (test != null)
+            if (0 > 0) {
                 next_btn.setOnClickListener {
                     if (presenter?.isRadioButtonClicked(answers_rb)!!) {
                         val selectedRadioButton: RadioButton = view!!.findViewById(answers_rb.checkedRadioButtonId)
@@ -85,7 +85,7 @@ class TestFragment : Fragment(), TestContract.View {
                         next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
                     }
                 }
-            } else if (documentsCount == count) {
+            } else if (1 == 1) {
                 next_btn.text = "Results"
                 next_btn.setOnClickListener {
                     if (presenter?.isRadioButtonClicked(answers_rb)!!) {
