@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
 
         testFragment.arguments = arg
 
-
         supportFragmentManager
             .beginTransaction()
             .add(R.id.main_frag, infoFragment)
@@ -105,8 +104,6 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
         args.putString("CORRECT_ANSWERS", correctAnswers.toString())
         args.putString("INCORRECT_ANSWERS", inCorrectAnswers.toString())
 
-        Log.d(TAG, "$correctAnswers, $inCorrectAnswers")
-
         resultsFragment.arguments = args
 
         supportFragmentManager
@@ -114,11 +111,16 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
             .add(R.id.main_frag, resultsFragment)
             .show(resultsFragment)
             .hide(testFragment)
-            .addToBackStack(null)
             .commit()
+
     }
 
     override fun onStartTopicsFromResultsClicked() {
+        val args = Bundle()
+
+        args.remove("CORRECT_ANSWERS")
+        args.remove("INCORRECT_ANSWERS")
+
         supportFragmentManager
             .beginTransaction()
             .remove(topicsFragment)

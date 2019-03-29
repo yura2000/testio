@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestoreException
+import com.squareup.picasso.Picasso
 import com.testio.testio.R
 import com.testio.testio.data.Item
 import com.testio.testio.topics.TopicsClickListener
@@ -24,12 +25,11 @@ class TopicsRecyclerView(options: FirestoreRecyclerOptions<Item>) :
     }
 
     override fun onBindViewHolder(holder: TopicsViewHolder, position: Int, model: Item) {
-//        val topic: Item? = null
-//        topic?.id = model.id
-//        topic?.title = model.title
-//        holder.bind(topic)
+        Log.d(TAG, "TExt: ${model.title}, id: ${model.id}, img: ${model.image}")
         holder.topicTitle?.text = model.title
         holder.topicId?.text = model.id
+        Picasso.get().load(model.image).into(holder.topicImg)
+
         holder.containerItem?.setOnClickListener {
             listener?.onTopicsClicked(model)
         }

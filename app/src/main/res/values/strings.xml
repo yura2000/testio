@@ -8,6 +8,9 @@
     <string name="start">Старт</string>
     <string name="topics">Перелік тем</string>
     <string name="result">Результат</string>
+    <string name="number_of_questions">Кількість питань:</string>
+    <string name="amount_of_time">Кількість часу:</string>
+    <string name="number_of_topic">Номер питання:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

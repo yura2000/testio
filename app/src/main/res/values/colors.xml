@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#4A6572</color>
+    <color name="colorPrimaryDark">#304049</color>
     <color name="colorAccent">#D81B60</color>
     <color name="buttonStart">#54B1A9</color>
     <color name="buttonStartText">#F4FAF9</color>
@@ -9,8 +9,12 @@
     <color name="formsMain">#9DCCB8</color>
     <color name="formsTextMain">#FCFDFC</color>
     <color name="buttonColorMain">#009B83</color>
-    <color name="backgroundTopics">#333D39</color>
-    <color name="itemTopics">#8DAFB8</color>
+
+    <!--topics-->
+    <color name="backgroundTopics">#EDF0F2</color>
+    <color name="itemTopics">#FEFEFE</color>
+    <color name="textTopics">#17262A</color>
+
     <color name="correct">#ABFF99</color>
     <color name="inCorrect">#FF9999</color>
     <color name="textCorrect">#414141</color>

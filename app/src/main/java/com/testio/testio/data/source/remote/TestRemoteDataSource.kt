@@ -15,21 +15,6 @@ class TestRemoteDataSource : TestDataSource {
 
     override fun getData(topicId: String?, count: Int?) {
         val db = FirebaseFirestore.getInstance()
-        var value: String? = ""
-
-        db.collection("topics/topic$topicId/questions$topicId")
-            .document("question$count")
-            .get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    value = document.getString("title")
-                } else {
-                    Log.d(TAG, "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
 
         val valueArray: BiMap<Int, String>? = HashBiMap.create()
 
@@ -43,25 +28,45 @@ class TestRemoteDataSource : TestDataSource {
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
-                presenter?.loadData(value, valueArray)
+                presenter?.loadData(valueArray)
+            }
+    }
+
+    override fun getDocumentName(topicId: String?, count: Int?) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("topics/topic$topicId/questions$topicId")
+            .document("question$count")
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val value = document.getString("title")
+                    Log.d(TAG, "Name: $value, count $count")
+                    presenter?.loadDocumentName(value)
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception)
             }
     }
 
     override fun getDocumentsCount(topicId: String?) {
         val db = FirebaseFirestore.getInstance()
-        var documentsCount: Int? = 0
+        var documentsCount: Int
 
         db.collection("topics/topic$topicId/questions$topicId")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        documentsCount = documentsCount?.inc()
-                    }
+                    documentsCount = task.result!!.size()
+                    Log.d(TAG, "DATA: $documentsCount")
+                    presenter?.loadDocumentsCount(documentsCount)
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
-                presenter?.documentsCount = documentsCount
+
             }
     }
 

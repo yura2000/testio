@@ -6,13 +6,14 @@ import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.testio.testio.data.source.TestDataSource
 
-class TestPresenter(testView: TestContract.View, testData: TestDataSource)
-    : TestContract.Presenter{
+class TestPresenter(testView: TestContract.View, testData: TestDataSource) : TestContract.Presenter {
 
     private var mTestRemoteDataSource: TestDataSource? = null
     private var mTestView: TestContract.View? = null
-    private var TAG = "MyBitch"
+    private var documentCount: Int = 0
+    private var TAG = "MyPresenter"
     private val mValueArray: BiMap<Int, String>? = HashBiMap.create()
+    private var topicsName: String? = null
 
     init {
         mTestView = testView
@@ -23,10 +24,15 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
     }
 
     override fun getData(topicId: String?, count: Int?) {
+        mTestRemoteDataSource?.getDocumentName(topicId, count)
         mTestRemoteDataSource?.getData(topicId, count)
     }
 
-    override fun loadData(value: String?, valueArray: BiMap<Int, String>?) {
+    override fun getDocumentsCount(topicId: String?) {
+        mTestRemoteDataSource?.getDocumentsCount(topicId)
+    }
+
+    override fun loadData(valueArray: BiMap<Int, String>?) {
         val shuffledKeys = valueArray?.keys?.shuffled()
 
         mValueArray?.put(shuffledKeys!![0], valueArray[shuffledKeys[0]])
@@ -34,7 +40,8 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
         mValueArray?.put(shuffledKeys!![2], valueArray[shuffledKeys[2]])
         mValueArray?.put(shuffledKeys!![3], valueArray[shuffledKeys[3]])
 
-        mTestView?.showData(value, mValueArray, shuffledKeys)
+        Log.d(TAG, "DOCUMMMAA $topicsName")
+        mTestView?.showData(topicsName, mValueArray, shuffledKeys, documentCount)
     }
 
     override fun isRadioButtonClicked(answerRg: RadioGroup): Boolean {
@@ -49,12 +56,14 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource)
         return false
     }
 
-    override var documentsCount: Int? = 0
+    override fun loadDocumentName(topicsName: String?) {
+        this.topicsName = topicsName
+        Log.d(TAG, "Here must be name of the topic: $topicsName")
+    }
 
-    override fun getDocumentsCount(topicId: String?) : Int? {
-        mTestRemoteDataSource?.getDocumentsCount(topicId)
-        Log.d(TAG, "$documentsCount")
-        return documentsCount
+    override fun loadDocumentsCount(documentCount: Int) {
+        this.documentCount = documentCount
+        Log.d(TAG, "DOCUM $documentCount")
     }
 
     override fun saveUserData(correctAnswers: Int?, inCorrectAnswers: Int?, userId: String?) {
