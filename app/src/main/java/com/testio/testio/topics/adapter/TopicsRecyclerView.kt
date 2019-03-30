@@ -25,10 +25,14 @@ class TopicsRecyclerView(options: FirestoreRecyclerOptions<Item>) :
     }
 
     override fun onBindViewHolder(holder: TopicsViewHolder, position: Int, model: Item) {
-        Log.d(TAG, "TExt: ${model.title}, id: ${model.id}, img: ${model.image}")
-        holder.topicTitle?.text = model.title
-        holder.topicId?.text = model.id
-        Picasso.get().load(model.image).into(holder.topicImg)
+        if (model.title != "") holder.topicTitle?.text = model.title
+        else holder.topicTitle?.text = "Topic = null. Помилка отримання даних. Повідомте розробнику!"
+
+        if (model.id != "") holder.topicId?.text = model.id
+        else holder.topicTitle?.text = "ID = null. Помилка отримання даних. Повідомте розробнику!"
+
+        if (model.image != "") Picasso.get().load(model.image).error(R.mipmap.error_sm).placeholder(R.drawable.progress_animation).into(holder.topicImg)
+        else Picasso.get().load(R.mipmap.brain).into(holder.topicImg)
 
         holder.containerItem?.setOnClickListener {
             listener?.onTopicsClicked(model)

@@ -1,6 +1,5 @@
 package com.testio.testio.test
 
-import android.util.Log
 import android.widget.RadioGroup
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
@@ -8,28 +7,26 @@ import com.testio.testio.data.source.TestDataSource
 
 class TestPresenter(testView: TestContract.View, testData: TestDataSource) : TestContract.Presenter {
 
-    private var mTestRemoteDataSource: TestDataSource? = null
-    private var mTestView: TestContract.View? = null
-    private var documentCount: Int = 0
+    private var testRemoteDataSource: TestDataSource? = null
+    private var testView: TestContract.View? = null
     private var TAG = "MyPresenter"
     private val mValueArray: BiMap<Int, String>? = HashBiMap.create()
-    private var topicsName: String? = null
 
     init {
-        mTestView = testView
-        mTestRemoteDataSource = testData
+        this.testView = testView
+        testRemoteDataSource = testData
 
-        mTestView?.setPresenter(this)
-        mTestRemoteDataSource?.setPresenter(this)
+        this.testView?.setPresenter(this)
+        testRemoteDataSource?.setPresenter(this)
     }
 
-    override fun getData(topicId: String?, count: Int?) {
-        mTestRemoteDataSource?.getDocumentName(topicId, count)
-        mTestRemoteDataSource?.getData(topicId, count)
+    override fun getData(topicId: String?, questionNumber: Int?) {
+        testRemoteDataSource?.getDocumentName(topicId, questionNumber)
+        testRemoteDataSource?.getData(topicId, questionNumber)
     }
 
     override fun getDocumentsCount(topicId: String?) {
-        mTestRemoteDataSource?.getDocumentsCount(topicId)
+        testRemoteDataSource?.getDocumentsCount(topicId)
     }
 
     override fun loadData(valueArray: BiMap<Int, String>?) {
@@ -40,8 +37,7 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource) : Tes
         mValueArray?.put(shuffledKeys!![2], valueArray[shuffledKeys[2]])
         mValueArray?.put(shuffledKeys!![3], valueArray[shuffledKeys[3]])
 
-        Log.d(TAG, "DOCUMMMAA $topicsName")
-        mTestView?.showData(topicsName, mValueArray, shuffledKeys, documentCount)
+        testView?.showData(mValueArray, shuffledKeys)
     }
 
     override fun isRadioButtonClicked(answerRg: RadioGroup): Boolean {
@@ -57,16 +53,18 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource) : Tes
     }
 
     override fun loadDocumentName(topicsName: String?) {
-        this.topicsName = topicsName
-        Log.d(TAG, "Here must be name of the topic: $topicsName")
+        testView?.showDocumentName(topicsName)
     }
 
-    override fun loadDocumentsCount(documentCount: Int) {
-        this.documentCount = documentCount
-        Log.d(TAG, "DOCUM $documentCount")
+    override fun loadDocumentsCount(amountOfDocuments: Int) {
+        testView?.showDocumentsCount(amountOfDocuments)
     }
 
     override fun saveUserData(correctAnswers: Int?, inCorrectAnswers: Int?, userId: String?) {
-        mTestRemoteDataSource?.saveUserData(correctAnswers, inCorrectAnswers, userId)
+        testRemoteDataSource?.saveUserData(correctAnswers, inCorrectAnswers, userId)
+    }
+
+    override fun dataLoadingError() {
+        testView?.showGetDataError()
     }
 }

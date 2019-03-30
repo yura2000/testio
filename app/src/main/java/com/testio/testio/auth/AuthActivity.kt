@@ -45,11 +45,13 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(
-
-                    baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    authErrorText_tv.text = "Не вдалося авторизуватися. Перевірте правильність введених даних та спробуйте ще раз!"
+                    authErrorText_tv.visibility = View.VISIBLE
+//                    Toast.makeText(
+//
+//                        baseContext, "Authentication failed.",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                 }
             }
@@ -68,18 +70,22 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
                     intent.putExtra("USER_ID", task.result?.user?.uid)
                     startActivity(intent)
                 } else {
+                    authErrorText_tv.text = "Не вдалося авторизуватися. Перевірте правильність введених даних та спробуйте ще раз!"
+                    authErrorText_tv.visibility = View.VISIBLE
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+//                    Toast.makeText(
+//                        baseContext, "Authentication failed.",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
                 }
 
                 if (!task.isSuccessful) {
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    authErrorText_tv.text = "Не вдалося авторизуватися. Перевірте правильність введених даних та спробуйте ще раз!"
+                    authErrorText_tv.visibility = View.VISIBLE
+//                    Toast.makeText(
+//                        baseContext, "Authentication failed.",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
                 }
             }
     }
@@ -89,7 +95,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
 
         val email = email_et.text.toString()
         if (TextUtils.isEmpty(email)) {
-            email_et.error = "Required."
+            email_et.error = "Введіть email!"
             valid = false
         } else {
             email_et.error = null
@@ -97,7 +103,7 @@ class AuthActivity : AppCompatActivity(), View.OnClickListener {
 
         val password = password_et.text.toString()
         if (TextUtils.isEmpty(password)) {
-            password_et.error = "Required."
+            password_et.error = "Введіть пароль!"
             valid = false
         } else {
             password_et.error = null

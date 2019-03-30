@@ -11,7 +11,13 @@
     <string name="number_of_questions">Кількість питань:</string>
     <string name="amount_of_time">Кількість часу:</string>
     <string name="number_of_topic">Номер питання:</string>
-
+    <string name="not_available">Функція не доступна!</string>
+    <string name="loading">Завантаження…</string>
+    <string name="next">Наступне питання</string>
+    <string name="correct_answers">Кількість правильних відповідей:</string>
+    <string name="incorrect_answers">Кількість не правильних відповідей:</string>
+    <string name="time_used">Витрачено часу:</string>
+    <string name="main_menu">Головне меню</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

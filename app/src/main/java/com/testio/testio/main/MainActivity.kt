@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import com.testio.testio.R
 import com.testio.testio.data.Item
+import com.testio.testio.data.source.remote.InfoRemoteDataSource
 import com.testio.testio.data.source.remote.TestRemoteDataSource
 import com.testio.testio.data.source.remote.TopicsRemoteDataSource
 import com.testio.testio.info.InfoClickListener
 import com.testio.testio.info.InfoFragment
+import com.testio.testio.info.InfoPresenter
 import com.testio.testio.results.ResultsClickListener
 import com.testio.testio.results.ResultsFragment
 import com.testio.testio.test.TestClickListener
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
 
         supportFragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
             .add(R.id.main_frag, topicsFragment)
             .show(topicsFragment)
             .commit()
@@ -56,9 +59,11 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
     }
 
     override fun startInfoFragment(item: Item?, mUserId: String) {
+        val repository = InfoRemoteDataSource()
+
         val arg = Bundle()
 
-        arg.putString("TOPIC_TITLE", item?.title)
+        arg.putString("TOPIC_ID", item?.id)
 
         infoFragment.arguments = arg
 
@@ -69,11 +74,14 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
 
         supportFragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
             .add(R.id.main_frag, infoFragment)
             .show(infoFragment)
             .hide(topicsFragment)
             .addToBackStack(null)
             .commit()
+
+        val presenter = InfoPresenter(infoFragment, repository)
     }
 
     override fun onStartClicked() {
@@ -85,6 +93,7 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
 
         supportFragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
             .add(R.id.main_frag, testFragment)
             .show(testFragment)
             .hide(infoFragment)
@@ -108,6 +117,7 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
 
         supportFragmentManager
             .beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
             .add(R.id.main_frag, resultsFragment)
             .show(resultsFragment)
             .hide(testFragment)

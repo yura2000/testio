@@ -10,7 +10,7 @@
 
     <EditText
             android:id="@+id/email_et"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
@@ -21,13 +21,13 @@
             android:fontFamily="@font/notosans_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" android:layout_marginBottom="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toTopOf="@+id/password_et" android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"/>
+            android:layout_marginEnd="18dp" app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="25dp"/>
 
     <EditText
             android:id="@+id/password_et"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/password"
             android:inputType="textPassword"
@@ -37,13 +37,13 @@
             android:textColorHint="@color/formsTextMain"
             android:fontFamily="@font/notosans_bold"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_et" android:layout_marginBottom="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/email_et" android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toTopOf="@+id/sign_in_btn" android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"/>
 
     <Button
             android:id="@+id/sign_in_btn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/signin"
             android:background="@color/buttonColorMain"
@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password_et"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toTopOf="@+id/sign_up_btn"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
@@ -61,7 +61,7 @@
 
     <Button
             android:id="@+id/sign_up_btn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/signup"
             android:background="@color/buttonColorMain"
@@ -70,12 +70,11 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sign_in_btn"
-            android:layout_marginBottom="150dp"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:layout_marginTop="15dp" app:layout_constraintHorizontal_bias="0.0"/>
     <ImageView
             android:layout_width="160dp"
             android:layout_height="150dp"
@@ -84,8 +83,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="53dp"
-            android:layout_marginBottom="82dp"
-            app:layout_constraintBottom_toTopOf="@+id/email_et"/>
+            android:layout_marginTop="60dp"
+    />
+    <TextView
+            android:text="TextView"
+            android:paddingLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/authErrorText_tv"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/textError"
+            android:fontFamily="@font/notosans_bold"
+            android:textSize="14sp"
+            android:visibility="invisible"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_btn" android:layout_marginTop="15dp"
+            app:layout_constraintVertical_bias="0.0"/>
 
 </android.support.constraint.ConstraintLayout>

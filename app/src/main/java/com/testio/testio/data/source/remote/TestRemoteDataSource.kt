@@ -25,10 +25,11 @@ class TestRemoteDataSource : TestDataSource {
                     for (document in task.result!!) {
                         valueArray?.put(document.data["id"].toString().toInt(), document.data["title"].toString())
                     }
+                    presenter?.loadData(valueArray)
                 } else {
+                    presenter?.dataLoadingError()
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
-                presenter?.loadData(valueArray)
             }
     }
 
@@ -44,26 +45,28 @@ class TestRemoteDataSource : TestDataSource {
                     Log.d(TAG, "Name: $value, count $count")
                     presenter?.loadDocumentName(value)
                 } else {
+                    presenter?.dataLoadingError()
                     Log.d(TAG, "No such document")
                 }
             }
             .addOnFailureListener { exception ->
+                presenter?.dataLoadingError()
                 Log.d(TAG, "get failed with ", exception)
             }
     }
 
     override fun getDocumentsCount(topicId: String?) {
         val db = FirebaseFirestore.getInstance()
-        var documentsCount: Int
+        var amountOfDocuments: Int
 
         db.collection("topics/topic$topicId/questions$topicId")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    documentsCount = task.result!!.size()
-                    Log.d(TAG, "DATA: $documentsCount")
-                    presenter?.loadDocumentsCount(documentsCount)
+                    amountOfDocuments = task.result!!.size()
+                    presenter?.loadDocumentsCount(amountOfDocuments)
                 } else {
+                    presenter?.dataLoadingError()
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
 

@@ -9,6 +9,11 @@
     <color name="formsMain">#9DCCB8</color>
     <color name="formsTextMain">#FCFDFC</color>
     <color name="buttonColorMain">#009B83</color>
+    <color name="textError">#D32F2F</color>
+    <color name="shadowQuestion">#6E6E6E</color>
+    <color name="buttonNext">#54B1A9</color>
+    <color name="results">#FD5523</color>
+    <color name="backgroundResults">#B5E4C6</color>
 
     <!--topics-->
     <color name="backgroundTopics">#EDF0F2</color>
