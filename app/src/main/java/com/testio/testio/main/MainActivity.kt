@@ -3,7 +3,6 @@ package com.testio.testio.main
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.testio.testio.R
 import com.testio.testio.data.Item
 import com.testio.testio.data.source.remote.InfoRemoteDataSource
 import com.testio.testio.data.source.remote.TestRemoteDataSource
@@ -19,6 +18,9 @@ import com.testio.testio.test.TestPresenter
 import com.testio.testio.topics.TopicsClickListener
 import com.testio.testio.topics.TopicsFragment
 import com.testio.testio.topics.TopicsPresenter
+import android.support.v4.app.FragmentManager
+import android.R
+
 
 class MainActivity : AppCompatActivity(), MainScreenContract.View,
     TopicsClickListener, InfoClickListener, TestClickListener, ResultsClickListener {
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(com.testio.testio.R.layout.main_activity)
         val userId = intent.getStringExtra("USER_ID")
 
         mUserId = userId
@@ -44,12 +46,20 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
     override fun startTopicsFragment() {
         val repository = TopicsRemoteDataSource()
 
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
-            .add(R.id.main_frag, topicsFragment)
-            .show(topicsFragment)
-            .commit()
+        if (supportFragmentManager.findFragmentById(com.testio.testio.R.id.main_frag) is TopicsFragment) {
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
+                .show(topicsFragment)
+                .commit()
+        } else {
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
+                .replace(com.testio.testio.R.id.main_frag, topicsFragment)
+                .show(topicsFragment)
+                .commit()
+        }
 
         val presenter = TopicsPresenter(topicsFragment, repository)
     }
@@ -72,10 +82,12 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
 
         testFragment.arguments = arg
 
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
-            .add(R.id.main_frag, infoFragment)
+            .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
+            .add(com.testio.testio.R.id.main_frag, infoFragment)
             .show(infoFragment)
             .hide(topicsFragment)
             .addToBackStack(null)
@@ -91,14 +103,26 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
     override fun startTestFragment() {
         val repository = TestRemoteDataSource()
 
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
-            .add(R.id.main_frag, testFragment)
-            .show(testFragment)
-            .hide(infoFragment)
-            .addToBackStack(null)
-            .commit()
+        if (supportFragmentManager.findFragmentById(com.testio.testio.R.id.main_frag) is TestFragment)
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
+                //.add(com.testio.testio.R.id.main_frag, testFragment)
+                .show(testFragment)
+                .hide(infoFragment)
+                //.addToBackStack(null)
+                .commit()
+        else
+
+
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
+                .add(com.testio.testio.R.id.main_frag, testFragment)
+                .show(testFragment)
+                .hide(infoFragment)
+                //.addToBackStack(null)
+                .commit()
 
         val presenter = TestPresenter(testFragment, repository)
     }
@@ -117,12 +141,17 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
 
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
-            .add(R.id.main_frag, resultsFragment)
-            .show(resultsFragment)
-            .hide(testFragment)
+            .remove(testFragment)
             .commit()
 
+        supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
+            .add(com.testio.testio.R.id.main_frag, resultsFragment)
+            .show(resultsFragment)
+            .hide(testFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onStartTopicsFromResultsClicked() {
@@ -131,11 +160,11 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
         args.remove("CORRECT_ANSWERS")
         args.remove("INCORRECT_ANSWERS")
 
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
         supportFragmentManager
             .beginTransaction()
-            .remove(topicsFragment)
             .remove(infoFragment)
-            .remove(testFragment)
             .remove(resultsFragment)
             .commit()
 
