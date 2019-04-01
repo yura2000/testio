@@ -103,26 +103,14 @@ class MainActivity : AppCompatActivity(), MainScreenContract.View,
     override fun startTestFragment() {
         val repository = TestRemoteDataSource()
 
-        if (supportFragmentManager.findFragmentById(com.testio.testio.R.id.main_frag) is TestFragment)
-            supportFragmentManager
-                .beginTransaction()
-                .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
-                //.add(com.testio.testio.R.id.main_frag, testFragment)
-                .show(testFragment)
-                .hide(infoFragment)
-                //.addToBackStack(null)
-                .commit()
-        else
-
-
-            supportFragmentManager
-                .beginTransaction()
-                .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
-                .add(com.testio.testio.R.id.main_frag, testFragment)
-                .show(testFragment)
-                .hide(infoFragment)
-                //.addToBackStack(null)
-                .commit()
+        supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
+            .add(com.testio.testio.R.id.main_frag, testFragment)
+            .show(testFragment)
+            .hide(infoFragment)
+            .addToBackStack(null)
+            .commit()
 
         val presenter = TestPresenter(testFragment, repository)
     }
