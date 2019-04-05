@@ -1,6 +1,5 @@
-package com.testio.testio.topics.adapter
+package com.testio.testio.features.topics.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +8,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.squareup.picasso.Picasso
 import com.testio.testio.R
-import com.testio.testio.data.Item
-import com.testio.testio.topics.TopicsClickListener
+import com.testio.testio.data.models.Item
+import com.testio.testio.features.topics.TopicsClickListener
 
 class TopicsRecyclerView(options: FirestoreRecyclerOptions<Item>) :
     FirestoreRecyclerAdapter<Item, TopicsViewHolder>(options) {
@@ -37,10 +36,6 @@ class TopicsRecyclerView(options: FirestoreRecyclerOptions<Item>) :
         holder.containerItem?.setOnClickListener {
             listener?.onTopicsClicked(model)
         }
-    }
-
-    override fun onDataChanged() {
-        super.onDataChanged()
     }
 
     override fun onError(e: FirebaseFirestoreException) {

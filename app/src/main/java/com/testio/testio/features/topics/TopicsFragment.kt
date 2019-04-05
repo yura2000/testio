@@ -58,12 +58,13 @@ class TopicsFragment : Fragment(), TopicsContract.View {
     override fun showTopics(options: FirestoreRecyclerOptions<Item>) {
         topicsAdapter = TopicsRecyclerView(options)
 
-        val topicsRecyclerView = topics_recycler_view
+
         topicsAdapter!!.listener = (object : TopicsClickListener {
             override fun onTopicsClicked(item: Item?) {
                 callback.onTopicsClicked(item)
             }
         })
+        val topicsRecyclerView = topics_recycler_view
         topicsRecyclerView?.layoutManager = LinearLayoutManager(context)
         topicsRecyclerView?.adapter = topicsAdapter
     }

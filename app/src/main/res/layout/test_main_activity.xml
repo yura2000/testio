@@ -5,11 +5,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.main.MainActivity">
-    <android.support.v7.widget.RecyclerView
+        tools:context=".features.testmain.TestMainActivity">
+    <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/main_recycler_view">
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/main_frag">
 
-    </android.support.v7.widget.RecyclerView>
-
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

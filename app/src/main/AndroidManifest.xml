@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.testio.testio">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -11,8 +12,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-
+        <activity android:name=".features.learnmain.LearnMainActivity">
+        </activity>
+        <activity android:name=".features.addtests.AddTestActivity">
+        </activity>
         <activity android:name=".features.main.MainActivity">
+        </activity>
+        <activity android:name=".features.testmain.TestMainActivity">
         </activity>
         <activity android:name=".features.auth.AuthActivity">
             <intent-filter>

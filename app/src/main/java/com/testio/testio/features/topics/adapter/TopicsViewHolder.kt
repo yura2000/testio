@@ -1,4 +1,4 @@
-package com.testio.testio.topics.adapter
+package com.testio.testio.features.topics.adapter
 
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
@@ -6,9 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.testio.testio.R
-import com.testio.testio.data.Item
-import com.testio.testio.topics.TopicsClickListener
-import io.realm.Realm.init
+import com.testio.testio.features.topics.TopicsClickListener
 
 class TopicsViewHolder(itemView: View, private val onClickItem: TopicsClickListener?) :
     RecyclerView.ViewHolder(itemView) {

@@ -1,8 +1,8 @@
-package com.testio.testio.features.main
+package com.testio.testio.features.testmain
 
 import com.testio.testio.data.models.Item
 
-interface MainScreenContract {
+interface TestMainScreenContract {
     interface View {
         fun startTopicsFragment()
         fun startInfoFragment(item: Item?, mUserId: String)

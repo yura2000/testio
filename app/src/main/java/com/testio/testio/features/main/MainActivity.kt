@@ -1,159 +1,72 @@
 package com.testio.testio.features.main
 
+import android.content.Intent
+import android.media.Image
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.testio.testio.data.models.Item
-import com.testio.testio.data.source.remote.InfoRemoteDataSource
-import com.testio.testio.data.source.remote.TestRemoteDataSource
-import com.testio.testio.data.source.remote.TopicsRemoteDataSource
-import com.testio.testio.features.info.InfoClickListener
-import com.testio.testio.features.info.InfoFragment
-import com.testio.testio.features.results.ResultsClickListener
-import com.testio.testio.features.results.ResultsFragment
-import com.testio.testio.features.test.TestClickListener
-import com.testio.testio.features.test.TestFragment
-import com.testio.testio.features.test.TestPresenter
-import com.testio.testio.features.topics.TopicsClickListener
-import com.testio.testio.features.topics.TopicsFragment
-import com.testio.testio.features.topics.TopicsPresenter
-import android.support.v4.app.FragmentManager
-import com.testio.testio.features.info.InfoPresenter
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import com.testio.testio.R
+import com.testio.testio.features.addtests.AddTestActivity
+import com.testio.testio.features.learnmain.LearnMainActivity
+import com.testio.testio.features.main.adapter.MainRecyclerView
+import com.testio.testio.features.testmain.TestMainActivity
+import com.testio.testio.features.topics.adapter.Menu
+import kotlinx.android.synthetic.main.main_activity.*
 
+class MainActivity : AppCompatActivity() {
 
-class MainActivity : AppCompatActivity(), MainScreenContract.View,
-    TopicsClickListener, InfoClickListener, TestClickListener, ResultsClickListener {
-
-    private val topicsFragment = TopicsFragment()
-    private val infoFragment = InfoFragment()
-    private val testFragment = TestFragment()
-    private val resultsFragment = ResultsFragment()
     private var mUserId: String = ""
-    private val TAG = "MyAAA"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.testio.testio.R.layout.main_activity)
+        setContentView(R.layout.main_activity)
+
         val userId = intent.getStringExtra("USER_ID")
-
         mUserId = userId
-
-        startTopicsFragment()
+        showImages()
     }
 
-    override fun startTopicsFragment() {
-        val repository = TopicsRemoteDataSource()
+    private fun showImages() {
 
-        if (supportFragmentManager.findFragmentById(com.testio.testio.R.id.main_frag) is TopicsFragment) {
-            supportFragmentManager
-                .beginTransaction()
-                .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
-                .show(topicsFragment)
-                .commit()
-        } else {
-            supportFragmentManager
-                .beginTransaction()
-                .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
-                .replace(com.testio.testio.R.id.main_frag, topicsFragment)
-                .show(topicsFragment)
-                .commit()
-        }
+        val menu: List<Menu> = listOf(
+            Menu(0, R.drawable.learn),
+            Menu(1, R.drawable.test),
+            Menu(2, R.drawable.addtest)
+        )
 
-        val presenter = TopicsPresenter(topicsFragment, repository)
+        val recyclerView = MainRecyclerView(menu)
+        recyclerView.listener = (object : MainClickListener{
+            override fun onImageClicked(menu: Menu) {
+                when {
+                    menu.id == 0 -> startLearnMainActivity()
+                    menu.id == 1 -> startTestMainActivity()
+                    menu.id == 2 -> startAddTestActivity()
+                }
+            }
+        })
+        val mainRecyclerView = main_recycler_view
+        mainRecyclerView.layoutManager = LinearLayoutManager(this)
+        mainRecyclerView.adapter = recyclerView
     }
 
-    override fun onTopicsClicked(item: Item?) {
-        startInfoFragment(item, mUserId)
+    private fun startLearnMainActivity() {
+        val intent = Intent(this, LearnMainActivity::class.java)
+        startActivity(intent)
     }
 
-    override fun startInfoFragment(item: Item?, mUserId: String) {
-        val repository = InfoRemoteDataSource()
-
-        val arg = Bundle()
-
-        arg.putString("TOPIC_ID", item?.id)
-
-        infoFragment.arguments = arg
-
-        arg.putString("TOPIC_ID", item?.id)
-        arg.putString("USER_ID", mUserId)
-
-        testFragment.arguments = arg
-
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
-            .add(com.testio.testio.R.id.main_frag, infoFragment)
-            .show(infoFragment)
-            .hide(topicsFragment)
-            .addToBackStack(null)
-            .commit()
-
-        val presenter = InfoPresenter(infoFragment, repository)
+    private fun startTestMainActivity() {
+        val intent = Intent(this, TestMainActivity::class.java)
+        intent.putExtra("USER_ID", mUserId)
+        startActivity(intent)
     }
 
-    override fun onStartClicked() {
-        startTestFragment()
+    private fun startAddTestActivity() {
+        val intent = Intent(this, AddTestActivity::class.java)
+        startActivity(intent)
     }
+}
 
-    override fun startTestFragment() {
-        val repository = TestRemoteDataSource()
-
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
-            .add(com.testio.testio.R.id.main_frag, testFragment)
-            .show(testFragment)
-            .hide(infoFragment)
-            .addToBackStack(null)
-            .commit()
-
-        val presenter = TestPresenter(testFragment, repository)
-    }
-
-    override fun onResultClicked(correctAnswers: Int?, unCorrectAnswers: Int?) {
-        startResultsFragment(correctAnswers, unCorrectAnswers)
-    }
-
-    override fun startResultsFragment(correctAnswers: Int?, inCorrectAnswers: Int?) {
-        val args = Bundle()
-
-        args.putString("CORRECT_ANSWERS", correctAnswers.toString())
-        args.putString("INCORRECT_ANSWERS", inCorrectAnswers.toString())
-
-        resultsFragment.arguments = args
-
-        supportFragmentManager
-            .beginTransaction()
-            .remove(testFragment)
-            .commit()
-
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(com.testio.testio.R.anim.enter_from_right, com.testio.testio.R.anim.exit_to_right)
-            .add(com.testio.testio.R.id.main_frag, resultsFragment)
-            .show(resultsFragment)
-            .hide(testFragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
-    override fun onStartTopicsFromResultsClicked() {
-        val args = Bundle()
-
-        args.remove("CORRECT_ANSWERS")
-        args.remove("INCORRECT_ANSWERS")
-
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
-        supportFragmentManager
-            .beginTransaction()
-            .remove(infoFragment)
-            .remove(resultsFragment)
-            .commit()
-
-        startTopicsFragment()
-    }
+interface MainClickListener {
+    fun onImageClicked(menu: Menu)
 }
