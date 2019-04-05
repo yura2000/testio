@@ -1,6 +1,6 @@
 package com.testio.testio.data.source
 
-import com.testio.testio.test.TestContract
+import com.testio.testio.features.test.TestContract
 
 interface TestDataSource {
     fun getData(topicId: String?, count: Int?)

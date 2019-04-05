@@ -3,7 +3,7 @@ package com.testio.testio.data.source.remote
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.testio.testio.data.source.InfoDataSource
-import com.testio.testio.info.InfoContract
+import com.testio.testio.features.info.InfoContract
 
 class InfoRemoteDataSource : InfoDataSource {
 
@@ -55,7 +55,7 @@ class InfoRemoteDataSource : InfoDataSource {
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    val value = document.getString("image_background")
+                    val value = document.getString("imageBackground")
                     presenter?.loadBackgroundImage(value)
                 } else {
                     presenter?.dataLoadingError()

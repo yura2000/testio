@@ -1,7 +1,7 @@
-package com.testio.testio.topics
+package com.testio.testio.features.topics
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.testio.testio.data.Item
+import com.testio.testio.data.models.Item
 
 interface TopicsContract{
     interface View{

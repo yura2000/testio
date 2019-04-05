@@ -1,4 +1,4 @@
-package com.testio.testio.results
+package com.testio.testio.features.results
 
 import android.content.Context
 import android.os.Bundle

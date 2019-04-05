@@ -1,11 +1,10 @@
 package com.testio.testio.data.source.remote
 
-import android.util.Log
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.testio.testio.data.source.TopicsDataSource
-import com.testio.testio.topics.TopicsContract
+import com.testio.testio.features.topics.TopicsContract
 import com.google.firebase.firestore.FirebaseFirestore
-import com.testio.testio.data.Item
+import com.testio.testio.data.models.Item
 
 class TopicsRemoteDataSource : TopicsDataSource {
     private var presenter: TopicsContract.Presenter? = null

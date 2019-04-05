@@ -1,4 +1,4 @@
-package com.testio.testio.results
+package com.testio.testio.features.results
 
 interface ResultsClickListener {
     fun onStartTopicsFromResultsClicked()

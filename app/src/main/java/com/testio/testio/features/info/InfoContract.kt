@@ -1,4 +1,4 @@
-package com.testio.testio.info
+package com.testio.testio.features.info
 
 interface InfoContract {
     interface View {

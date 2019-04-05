@@ -1,4 +1,4 @@
-package com.testio.testio.test
+package com.testio.testio.features.test
 
 import android.content.Context
 import android.graphics.Color
@@ -70,7 +70,7 @@ class TestFragment : Fragment(), TestContract.View {
     override fun showData(
         valueArray: BiMap<Int, String>?,
         shuffledKeys: List<Int>?
-        ) {
+    ) {
         answer1_rb.text = valueArray!![shuffledKeys!![0]].toString()
         answer2_rb.text = valueArray[shuffledKeys[1]].toString()
         answer3_rb.text = valueArray[shuffledKeys[2]].toString()
@@ -87,25 +87,26 @@ class TestFragment : Fragment(), TestContract.View {
     override fun showDocumentsCount(amountOfDocuments: Int) {
         if (amountOfDocuments > questionNumber) {
             next_btn.setOnClickListener {
-                if (presenter?.isRadioButtonClicked(answers_rb)!!) {
-                    incrementAnswer()
-                    answers_rb.clearCheck()
-                    next_btn.setBackgroundColor(Color.argb(255, 84, 177, 169))
-                    questionNumber = questionNumber.inc()
-                    presenter?.getData(topicId, questionNumber)
-                    presenter?.getDocumentsCount(topicId)
-                } else
-                    next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
+                presenter?.isRadioButtonClicked(answers_rb)!!.let {
+                    if (it) {
+                        incrementAnswer()
+                        answers_rb.clearCheck()
+                        next_btn.setBackgroundColor(Color.argb(255, 84, 177, 169))
+                        questionNumber = questionNumber.inc()
+                        presenter?.getData(topicId, questionNumber)
+                        presenter?.getDocumentsCount(topicId)
+                    } else next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
+                }
             }
         } else if (amountOfDocuments == questionNumber) {
             next_btn.text = "Результати"
             next_btn.setOnClickListener {
-                if (presenter?.isRadioButtonClicked(answers_rb)!!) {
-                    incrementAnswer()
-                    presenter?.saveUserData(correctAnswers, inCorrectAnswers, userId)
-                    callback.onResultClicked(correctAnswers, inCorrectAnswers)
-                } else {
-                    next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
+                presenter?.isRadioButtonClicked(answers_rb)!!.let {
+                    if (it) {
+                        incrementAnswer()
+                        presenter?.saveUserData(correctAnswers, inCorrectAnswers, userId)
+                        callback.onResultClicked(correctAnswers, inCorrectAnswers)
+                    } else next_btn.setBackgroundColor(Color.argb(255, 177, 84, 84))
                 }
             }
         }

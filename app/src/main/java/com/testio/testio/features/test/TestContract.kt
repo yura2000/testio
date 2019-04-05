@@ -1,4 +1,4 @@
-package com.testio.testio.test
+package com.testio.testio.features.test
 
 import android.widget.RadioGroup
 import com.google.common.collect.BiMap

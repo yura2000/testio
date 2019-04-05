@@ -5,7 +5,7 @@ import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.google.firebase.firestore.FirebaseFirestore
 import com.testio.testio.data.source.TestDataSource
-import com.testio.testio.test.TestContract
+import com.testio.testio.features.test.TestContract
 
 
 class TestRemoteDataSource : TestDataSource {

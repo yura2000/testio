@@ -1,6 +1,6 @@
-package com.testio.testio.main
+package com.testio.testio.features.main
 
-import com.testio.testio.data.Item
+import com.testio.testio.data.models.Item
 
 interface MainScreenContract {
     interface View {

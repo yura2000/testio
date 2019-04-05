@@ -1,25 +1,23 @@
-package com.testio.testio.main
+package com.testio.testio.features.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.testio.testio.data.Item
+import com.testio.testio.data.models.Item
 import com.testio.testio.data.source.remote.InfoRemoteDataSource
 import com.testio.testio.data.source.remote.TestRemoteDataSource
 import com.testio.testio.data.source.remote.TopicsRemoteDataSource
-import com.testio.testio.info.InfoClickListener
-import com.testio.testio.info.InfoFragment
-import com.testio.testio.info.InfoPresenter
-import com.testio.testio.results.ResultsClickListener
-import com.testio.testio.results.ResultsFragment
-import com.testio.testio.test.TestClickListener
-import com.testio.testio.test.TestFragment
-import com.testio.testio.test.TestPresenter
-import com.testio.testio.topics.TopicsClickListener
-import com.testio.testio.topics.TopicsFragment
-import com.testio.testio.topics.TopicsPresenter
+import com.testio.testio.features.info.InfoClickListener
+import com.testio.testio.features.info.InfoFragment
+import com.testio.testio.features.results.ResultsClickListener
+import com.testio.testio.features.results.ResultsFragment
+import com.testio.testio.features.test.TestClickListener
+import com.testio.testio.features.test.TestFragment
+import com.testio.testio.features.test.TestPresenter
+import com.testio.testio.features.topics.TopicsClickListener
+import com.testio.testio.features.topics.TopicsFragment
+import com.testio.testio.features.topics.TopicsPresenter
 import android.support.v4.app.FragmentManager
-import android.R
+import com.testio.testio.features.info.InfoPresenter
 
 
 class MainActivity : AppCompatActivity(), MainScreenContract.View,

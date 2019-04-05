@@ -1,6 +1,6 @@
 package com.testio.testio.data.source
 
-import com.testio.testio.info.InfoContract
+import com.testio.testio.features.info.InfoContract
 
 interface InfoDataSource {
     fun getTopicTitle(topicId: String?)

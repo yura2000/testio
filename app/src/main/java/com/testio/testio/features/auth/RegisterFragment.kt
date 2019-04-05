@@ -1,4 +1,4 @@
-package com.testio.testio.auth
+package com.testio.testio.features.auth
 
 import android.content.Context
 import android.net.Uri

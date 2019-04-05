@@ -1,6 +1,6 @@
 package com.testio.testio.data.source
 
-import com.testio.testio.topics.TopicsContract
+import com.testio.testio.features.topics.TopicsContract
 
 interface TopicsDataSource {
     fun getTopics()

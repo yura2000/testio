@@ -1,8 +1,9 @@
-package com.testio.testio.info
+package com.testio.testio.features.info
 
 import com.testio.testio.data.source.InfoDataSource
 
-class InfoPresenter(infoView: InfoContract.View, infoSource: InfoDataSource) : InfoContract.Presenter {
+class InfoPresenter(infoView: InfoContract.View, infoSource: InfoDataSource) :
+    InfoContract.Presenter {
 
     private var infoRemoteDataSource: InfoDataSource? = null
     private var infoView: InfoContract.View? = null

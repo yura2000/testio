@@ -1,24 +1,18 @@
-package com.testio.testio.topics
+package com.testio.testio.features.topics
 
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.firestore.FirebaseFirestore
 
-import com.testio.testio.data.Item
-import com.testio.testio.topics.adapter.TopicsRecyclerView
+import com.testio.testio.data.models.Item
+import com.testio.testio.features.topics.adapter.TopicsRecyclerView
 import kotlinx.android.synthetic.main.topics_fragment.*
-
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-
-import com.testio.testio.topics.adapter.TopicsViewHolder
 
 
 class TopicsFragment : Fragment(), TopicsContract.View {

@@ -1,11 +1,12 @@
-package com.testio.testio.test
+package com.testio.testio.features.test
 
 import android.widget.RadioGroup
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.testio.testio.data.source.TestDataSource
 
-class TestPresenter(testView: TestContract.View, testData: TestDataSource) : TestContract.Presenter {
+class TestPresenter(testView: TestContract.View, testData: TestDataSource) :
+    TestContract.Presenter {
 
     private var testRemoteDataSource: TestDataSource? = null
     private var testView: TestContract.View? = null

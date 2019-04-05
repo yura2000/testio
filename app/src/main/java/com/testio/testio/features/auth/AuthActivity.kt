@@ -1,4 +1,4 @@
-package com.testio.testio.auth
+package com.testio.testio.features.auth
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -9,7 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import com.google.firebase.FirebaseApp
-import com.testio.testio.main.MainActivity
+import com.testio.testio.features.main.MainActivity
 import kotlinx.android.synthetic.main.auth_activity.*
 
 
