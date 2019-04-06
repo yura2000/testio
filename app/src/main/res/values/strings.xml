@@ -18,6 +18,12 @@
     <string name="incorrect_answers">Кількість не правильних відповідей:</string>
     <string name="time_used">Витрачено часу:</string>
     <string name="main_menu">Головне меню</string>
+    <string name="save">Зберегти</string>
+    <string name="choose_topic">Оберіть тему</string>
+    <string name="enter_topic">Введіть назву теми</string>
+    <string name="enter_question">Введіть питання</string>
+    <string name="enter_correct_answer">Введіть правильну відповідь</string>
+    <string name="enter_answer">Введіть відповідь</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

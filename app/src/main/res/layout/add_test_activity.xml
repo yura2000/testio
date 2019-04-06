@@ -7,4 +7,110 @@
         android:layout_height="match_parent"
         tools:context=".features.addtests.AddTestActivity">
 
+    <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/chooseTopic_sp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="@string/enter_topic"
+            android:ems="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/enterTopic_et" android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" android:layout_marginTop="28dp"
+            app:layout_constraintTop_toBottomOf="@+id/chooseTopic_sp" app:layout_constraintHorizontal_bias="1.0"
+            android:visibility="invisible"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="@string/enter_question"
+            android:ems="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/enterQuestion_et"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/enterTopic_et"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="@string/enter_correct_answer"
+            android:ems="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/enterCorrectAnswer_et"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/enterQuestion_et"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="@string/enter_answer"
+            android:ems="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/enterSecondAnswer_et"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/enterCorrectAnswer_et"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="@string/enter_answer"
+            android:ems="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/enterThirdAnswer_et"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/enterSecondAnswer_et"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="@string/enter_answer"
+            android:ems="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/enterFourth_et" android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/enterThirdAnswer_et"/>
+    <Button
+            android:text="@string/save"
+            android:background="@color/buttonColorMain"
+            android:textColor="@color/backgroundTopics"
+            android:textSize="24sp"
+            android:fontFamily="@font/notosans_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/saveButton"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/enterFourth_et"/>
+    <TextView
+            android:text="@string/choose_topic"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:fontFamily="@font/notosans_bold"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/textView7" app:layout_constraintHorizontal_bias="0.135" android:layout_marginTop="64dp"
+            app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>

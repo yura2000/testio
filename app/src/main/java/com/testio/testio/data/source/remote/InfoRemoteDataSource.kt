@@ -34,7 +34,7 @@ class InfoRemoteDataSource : InfoDataSource {
         val db = FirebaseFirestore.getInstance()
         var amountOfDocuments: Int
 
-        db.collection("topics/topic$topicId/questions$topicId")
+        db.collection("topics/topic$topicId/questions")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

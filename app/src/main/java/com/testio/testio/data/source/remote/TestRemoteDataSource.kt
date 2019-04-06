@@ -18,7 +18,7 @@ class TestRemoteDataSource : TestDataSource {
 
         val valueArray: BiMap<Int, String>? = HashBiMap.create()
 
-        db.collection("topics/topic$topicId/questions$topicId/question$count/answers")
+        db.collection("topics/topic$topicId/questions/question$count/answers")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -36,7 +36,7 @@ class TestRemoteDataSource : TestDataSource {
     override fun getDocumentName(topicId: String?, count: Int?) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("topics/topic$topicId/questions$topicId")
+        db.collection("topics/topic$topicId/questions")
             .document("question$count")
             .get()
             .addOnSuccessListener { document ->
@@ -59,7 +59,7 @@ class TestRemoteDataSource : TestDataSource {
         val db = FirebaseFirestore.getInstance()
         var amountOfDocuments: Int
 
-        db.collection("topics/topic$topicId/questions$topicId")
+        db.collection("topics/topic$topicId/questions")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
