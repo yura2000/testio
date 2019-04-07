@@ -4,7 +4,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.testio.testio.data.source.TopicsDataSource
 import com.testio.testio.features.topics.TopicsContract
 import com.google.firebase.firestore.FirebaseFirestore
-import com.testio.testio.data.models.Item
+import com.testio.testio.models.Item
 
 class TopicsRemoteDataSource : TopicsDataSource {
     private var presenter: TopicsContract.Presenter? = null

@@ -1,4 +1,4 @@
-package com.testio.testio.data.models
+package com.testio.testio.models
 
 import com.google.firebase.firestore.ServerTimestamp
 import java.util.*

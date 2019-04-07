@@ -8,7 +8,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.squareup.picasso.Picasso
 import com.testio.testio.R
-import com.testio.testio.data.models.Item
+import com.testio.testio.models.Item
 import com.testio.testio.features.topics.TopicsClickListener
 
 class TopicsRecyclerView(options: FirestoreRecyclerOptions<Item>) :

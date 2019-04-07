@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.testio.testio.models.Topic
 import com.testio.testio.repos.AddTestRepo
 import com.testio.testio.repos.OnTopicsReadyCallback
 
@@ -23,5 +24,9 @@ class AddTestViewModel : ViewModel() {
 
     fun saveData(topicId: Int, questionTitle: String, answers: ArrayList<String>) {
         repository.saveData(topicId, questionTitle, answers)
+    }
+
+    fun saveTopic(topic: Topic) {
+        repository.saveTopic(topic)
     }
 }

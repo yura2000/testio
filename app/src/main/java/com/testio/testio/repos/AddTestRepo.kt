@@ -2,6 +2,7 @@ package com.testio.testio.repos
 
 import com.testio.testio.data.source.remote.AddTestRemoteDataSource
 import com.testio.testio.data.source.remote.OnRepoRemoteReadyCallback
+import com.testio.testio.models.Topic
 
 class AddTestRepo {
     private val remoteDataSource = AddTestRemoteDataSource()
@@ -16,6 +17,10 @@ class AddTestRepo {
 
     fun saveData(topicId: Int, questionTitle: String, answers: ArrayList<String>) {
         remoteDataSource.saveData(topicId, questionTitle, answers)
+    }
+
+    fun saveTopic(topic: Topic) {
+        remoteDataSource.saveTopic(topic)
     }
 }
 

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-import com.testio.testio.data.models.Item
+import com.testio.testio.models.Item
 import com.testio.testio.features.topics.adapter.TopicsRecyclerView
 import kotlinx.android.synthetic.main.topics_fragment.*
 

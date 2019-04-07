@@ -2,7 +2,7 @@ package com.testio.testio.features.testmain
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.testio.testio.data.models.Item
+import com.testio.testio.models.Item
 import com.testio.testio.data.source.remote.InfoRemoteDataSource
 import com.testio.testio.data.source.remote.TestRemoteDataSource
 import com.testio.testio.data.source.remote.TopicsRemoteDataSource
