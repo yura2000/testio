@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.test_fragment.*
 class TestFragment : Fragment(), TestContract.View {
 
     private var presenter: TestContract.Presenter? = null
-    private var topicId: String? = null
+    private var topicId: Int? = null
     private var questionNumber: Int = 1
     private var TAG = "MyFRAGGG"
     private lateinit var callback: TestClickListener
@@ -35,7 +35,7 @@ class TestFragment : Fragment(), TestContract.View {
 
         val args = arguments
         val userId = args?.getString("USER_ID")
-        val topicId = args?.getString("TOPIC_ID")
+        val topicId = args?.getInt("TOPIC_ID")
 
         this.topicId = topicId
         this.userId = userId

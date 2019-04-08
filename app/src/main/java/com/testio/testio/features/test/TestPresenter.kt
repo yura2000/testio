@@ -21,12 +21,12 @@ class TestPresenter(testView: TestContract.View, testData: TestDataSource) :
         testRemoteDataSource?.setPresenter(this)
     }
 
-    override fun getData(topicId: String?, questionNumber: Int?) {
+    override fun getData(topicId: Int?, questionNumber: Int?) {
         testRemoteDataSource?.getDocumentName(topicId, questionNumber)
         testRemoteDataSource?.getData(topicId, questionNumber)
     }
 
-    override fun getDocumentsCount(topicId: String?) {
+    override fun getDocumentsCount(topicId: Int?) {
         testRemoteDataSource?.getDocumentsCount(topicId)
     }
 

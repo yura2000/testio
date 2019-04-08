@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.add_test_activity.*
 import android.widget.AdapterView.OnItemSelectedListener
 import android.view.View
+import android.widget.Toast
 import com.testio.testio.models.Topic
 
 
@@ -97,6 +98,13 @@ class AddTestActivity : AppCompatActivity() {
                     add(enterFourth_et.text.toString())
                 }
                 viewModel.saveData(selectedItemId + 1, enterQuestion_et.text.toString(), questions)
+
+                enterQuestion_et.setText("")
+                enterCorrectAnswer_et.setText("")
+                enterSecondAnswer_et.setText("")
+                enterThirdAnswer_et.setText("")
+                enterFourth_et.setText("")
+                Toast.makeText(this, "Тест додано. Дякуємо!", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -9,11 +9,12 @@ class InfoRemoteDataSource : InfoDataSource {
 
     private var presenter: InfoContract.Presenter? = null
     private var TAG = "MyData"
+    private var database: String = "main_topics"
 
     override fun getTopicTitle(topicId: String?) {
         val db = FirebaseFirestore.getInstance()
 
-        db.document("topics/topic$topicId")
+        db.document("$database/topic$topicId")
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -28,13 +29,16 @@ class InfoRemoteDataSource : InfoDataSource {
             .addOnFailureListener { exception ->
                 presenter?.dataLoadingError()
                 Log.d(TAG, "get failed with ", exception)
-            }    }
+            }
+    }
 
     override fun getDocumentsCount(topicId: String?) {
         val db = FirebaseFirestore.getInstance()
         var amountOfDocuments: Int
 
-        db.collection("topics/topic$topicId/questions")
+        db.collection(database)
+            .document("topic$topicId")
+            .collection("questions")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -51,7 +55,7 @@ class InfoRemoteDataSource : InfoDataSource {
     override fun getBackgroundImage(topicId: String?) {
         val db = FirebaseFirestore.getInstance()
 
-        db.document("topics/topic$topicId")
+        db.document("$database/topic$topicId")
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {

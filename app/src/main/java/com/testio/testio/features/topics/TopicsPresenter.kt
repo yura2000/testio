@@ -4,25 +4,24 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.testio.testio.models.Item
 import com.testio.testio.data.source.TopicsDataSource
 
-class TopicsPresenter(topicsView: TopicsContract.View, topicsData: TopicsDataSource)
-    : TopicsContract.Presenter {
+class TopicsPresenter(topicsView: TopicsContract.View, topicsData: TopicsDataSource) : TopicsContract.Presenter {
 
-    private var mTopicsRemoteDataSource: TopicsDataSource? = null
-    private var mTopicsView: TopicsContract.View? = null
+    private var topicsData: TopicsDataSource? = null
+    private var topicsView: TopicsContract.View? = null
 
     init {
-        mTopicsView = topicsView
-        mTopicsRemoteDataSource = topicsData
+        this.topicsView = topicsView
+        this.topicsData = topicsData
 
-        mTopicsView?.setPresenter(this)
-        mTopicsRemoteDataSource?.setPresenter(this)
+        this.topicsView?.setPresenter(this)
+        this.topicsData?.setPresenter(this)
     }
 
     override fun getTopics() {
-        mTopicsRemoteDataSource?.getTopics()
+        topicsData?.getTopics()
     }
 
     override fun loadTopics(options: FirestoreRecyclerOptions<Item>) {
-        mTopicsView?.showTopics(options)
+        topicsView?.showTopics(options)
     }
 }

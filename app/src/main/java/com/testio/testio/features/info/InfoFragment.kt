@@ -29,9 +29,9 @@ class InfoFragment : Fragment(), InfoContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args = arguments
-        val topicId = args?.getString("TOPIC_ID")
+        val topicId = args?.getInt("TOPIC_ID")
 
-        this.topicId = topicId
+        this.topicId = topicId.toString()
     }
 
     override fun onCreateView(

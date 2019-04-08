@@ -27,7 +27,7 @@ class TestMainActivity : AppCompatActivity(), TestMainScreenContract.View,
     private val infoFragment = InfoFragment()
     private val testFragment = TestFragment()
     private val resultsFragment = ResultsFragment()
-    private var mUserId: String = ""
+    private var userId: String = ""
     private val TAG = "MyAAA"
 
 
@@ -36,13 +36,17 @@ class TestMainActivity : AppCompatActivity(), TestMainScreenContract.View,
         setContentView(com.testio.testio.R.layout.test_main_activity)
         val userId = intent.getStringExtra("USER_ID")
 
-        mUserId = userId
+        this.userId = userId
 
         startTopicsFragment()
     }
 
     override fun startTopicsFragment() {
         val repository = TopicsRemoteDataSource()
+
+        val arg = Bundle()
+        arg.putString("USER_ID", userId)
+        topicsFragment.arguments = arg
 
         if (supportFragmentManager.findFragmentById(com.testio.testio.R.id.main_frag) is TopicsFragment) {
             supportFragmentManager
@@ -59,11 +63,11 @@ class TestMainActivity : AppCompatActivity(), TestMainScreenContract.View,
                 .commit()
         }
 
-        val presenter = TopicsPresenter(topicsFragment, repository)
+        TopicsPresenter(topicsFragment, repository)
     }
 
     override fun onTopicsClicked(item: Item?) {
-        startInfoFragment(item, mUserId)
+        startInfoFragment(item, userId)
     }
 
     override fun startInfoFragment(item: Item?, mUserId: String) {
@@ -71,11 +75,11 @@ class TestMainActivity : AppCompatActivity(), TestMainScreenContract.View,
 
         val arg = Bundle()
 
-        arg.putString("TOPIC_ID", item?.id)
+        arg.putInt("TOPIC_ID", item?.id!!)
 
         infoFragment.arguments = arg
 
-        arg.putString("TOPIC_ID", item?.id)
+        arg.putInt("TOPIC_ID", item.id)
         arg.putString("USER_ID", mUserId)
 
         testFragment.arguments = arg
@@ -91,7 +95,7 @@ class TestMainActivity : AppCompatActivity(), TestMainScreenContract.View,
             .addToBackStack(null)
             .commit()
 
-        val presenter = InfoPresenter(infoFragment, repository)
+        InfoPresenter(infoFragment, repository)
     }
 
     override fun onStartClicked() {
@@ -110,7 +114,7 @@ class TestMainActivity : AppCompatActivity(), TestMainScreenContract.View,
             .addToBackStack(null)
             .commit()
 
-        val presenter = TestPresenter(testFragment, repository)
+        TestPresenter(testFragment, repository)
     }
 
     override fun onResultClicked(correctAnswers: Int?, unCorrectAnswers: Int?) {

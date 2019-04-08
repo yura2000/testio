@@ -13,8 +13,8 @@ interface TestContract {
     }
 
     interface Presenter {
-        fun getData(topicId: String?, questionNumber: Int?)
-        fun getDocumentsCount(topicId: String?)
+        fun getData(topicId: Int?, questionNumber: Int?)
+        fun getDocumentsCount(topicId: Int?)
         fun loadDocumentsCount(amountOfDocuments: Int)
         fun loadData(valueArray: BiMap<Int, String>?)
         fun loadDocumentName(topicsName: String?)

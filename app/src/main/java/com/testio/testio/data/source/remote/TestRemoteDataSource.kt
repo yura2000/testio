@@ -12,18 +12,21 @@ class TestRemoteDataSource : TestDataSource {
 
     private var presenter: TestContract.Presenter? = null
     private var TAG = "MyData"
+    private var database: String = "main_topics"
 
-    override fun getData(topicId: String?, count: Int?) {
+    override fun getData(topicId: Int?, count: Int?) {
         val db = FirebaseFirestore.getInstance()
 
         val valueArray: BiMap<Int, String>? = HashBiMap.create()
 
-        db.collection("topics/topic$topicId/questions/question$count/answers")
+        db.collection("$database/topic$topicId/questions/question$count/answers")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        valueArray?.put(document.data["id"].toString().toInt(), document.data["title"].toString())
+                        val test = document.data["id"].toString()
+
+                        valueArray?.put(test.toInt(), document.data["title"].toString())
                     }
                     presenter?.loadData(valueArray)
                 } else {
@@ -33,16 +36,15 @@ class TestRemoteDataSource : TestDataSource {
             }
     }
 
-    override fun getDocumentName(topicId: String?, count: Int?) {
+    override fun getDocumentName(topicId: Int?, count: Int?) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("topics/topic$topicId/questions")
+        db.collection("$database/topic$topicId/questions")
             .document("question$count")
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {
                     val value = document.getString("title")
-                    Log.d(TAG, "Name: $value, count $count")
                     presenter?.loadDocumentName(value)
                 } else {
                     presenter?.dataLoadingError()
@@ -55,11 +57,11 @@ class TestRemoteDataSource : TestDataSource {
             }
     }
 
-    override fun getDocumentsCount(topicId: String?) {
+    override fun getDocumentsCount(topicId: Int?) {
         val db = FirebaseFirestore.getInstance()
         var amountOfDocuments: Int
 
-        db.collection("topics/topic$topicId/questions")
+        db.collection("$database/topic$topicId/questions")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

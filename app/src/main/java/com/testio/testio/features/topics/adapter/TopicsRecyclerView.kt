@@ -27,7 +27,7 @@ class TopicsRecyclerView(options: FirestoreRecyclerOptions<Item>) :
         if (model.title != "") holder.topicTitle?.text = model.title
         else holder.topicTitle?.text = "Topic = null. Помилка отримання даних. Повідомте розробнику!"
 
-        if (model.id != "") holder.topicId?.text = model.id
+        if (model.id != 0) holder.topicId?.text = model.id.toString()
         else holder.topicTitle?.text = "ID = null. Помилка отримання даних. Повідомте розробнику!"
 
         if (model.image != "") Picasso.get().load(model.image).error(R.mipmap.error_sm).placeholder(R.drawable.progress_animation).into(holder.topicImg)
