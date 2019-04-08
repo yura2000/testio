@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/test_constraint_layout"
-            android:background="@color/backgroundTopics">
+            android:background="@color/backgroundTest">
 
         <TextView
                 android:text="@string/loading"
@@ -21,14 +21,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="24dp"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@color/itemTopics"
+                android:background="@drawable/radiobutton_unchecked"
                 android:fontFamily="@font/notosans_bold"
                 android:shadowColor="#ff6cc450"
                 android:elevation="10dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:gravity="center_vertical|center_horizontal" android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/textTest"/>
         <RadioGroup
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -54,7 +55,8 @@
                     android:elevation="5dp"
                     android:fontFamily="@font/notosans_regular"
                     android:textSize="14sp"
-                    android:textColor="@drawable/radio_text_selected"/>
+                    android:textColor="@drawable/radio_text_selected"
+                    android:drawableStart="@drawable/one"/>
             <RadioButton
                     android:layout_width="match_parent"
                     android:buttonTint="@color/buttonStart"
@@ -70,7 +72,8 @@
                     android:elevation="5dp"
                     android:fontFamily="@font/notosans_regular"
                     android:textSize="14sp"
-                    android:textColor="@drawable/radio_text_selected"/>
+                    android:textColor="@drawable/radio_text_selected"
+                    android:drawableStart="@drawable/two"/>
             <RadioButton
                     android:layout_width="match_parent"
                     android:buttonTint="@color/buttonStart"
@@ -86,7 +89,8 @@
                     android:elevation="5dp"
                     android:fontFamily="@font/notosans_regular"
                     android:textSize="14sp"
-                    android:textColor="@drawable/radio_text_selected"/>
+                    android:textColor="@drawable/radio_text_selected"
+                    android:drawableStart="@drawable/three"/>
             <RadioButton
                     android:layout_width="match_parent"
                     android:buttonTint="@color/buttonStart"
@@ -102,7 +106,8 @@
                     android:elevation="5dp"
                     android:fontFamily="@font/notosans_regular"
                     android:textSize="14sp"
-                    android:textColor="@drawable/radio_text_selected"/>
+                    android:textColor="@drawable/radio_text_selected"
+                    android:drawableStart="@drawable/four"/>
         </RadioGroup>
         <Button
                 android:text="@string/next"

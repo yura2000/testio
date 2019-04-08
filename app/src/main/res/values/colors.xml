@@ -3,24 +3,44 @@
     <color name="colorPrimary">#4A6572</color>
     <color name="colorPrimaryDark">#304049</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="buttonStart">#54B1A9</color>
-    <color name="buttonStartText">#F4FAF9</color>
-    <color name="backgroundMain">#2A4540</color>
-    <color name="formsMain">#9DCCB8</color>
-    <color name="formsTextMain">#FCFDFC</color>
-    <color name="buttonColorMain">#009B83</color>
+
     <color name="textError">#D32F2F</color>
     <color name="shadowQuestion">#6E6E6E</color>
-    <color name="buttonNext">#54B1A9</color>
-    <color name="results">#FD5523</color>
-    <color name="backgroundResults">#B5E4C6</color>
+
+    <!--auth-->
+    <color name="buttonStart">#54B1A9</color>
+    <color name="buttonStartText">#F4FAF9</color>
+    <color name="backgroundAuth">#344955</color>
+    <color name="backgroundTextAuth">#F9C371</color>
+    <color name="textAuth">#17262A</color>
+    <color name="buttonAuth">#F9AA33</color>
 
     <!--topics-->
     <color name="backgroundTopics">#EDF0F2</color>
     <color name="itemTopics">#FEFEFE</color>
     <color name="textTopics">#17262A</color>
 
+    <!--info-->
+    <color name="btnInfo">#F9AA33</color>
+    <color name="textBtnInfo">#17262A</color>
+    <color name="backgroundInfo">#344955</color>
+    <color name="textInfo">#FEFEFE</color>
+    
+    <!--tests-->
+    <color name="backgroundTest">#33333D</color>
+    <color name="backgroundTextTest">#34343D</color>
+    <color name="textTest">#FFFFFF</color>
+    
+    <!--results-->
     <color name="correct">#ABFF99</color>
     <color name="inCorrect">#FF9999</color>
     <color name="textCorrect">#414141</color>
+    <color name="buttonNext">#54B1A9</color>
+    <color name="results">#FD5523</color>
+    <color name="backgroundResults">#B5E4C6</color>
+
+    <!--add_tests-->
+    <color name="backgroundAddTest">#33333D</color>
+    <color name="textAddTest">#FFFFFF</color>
+
 </resources>

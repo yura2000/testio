@@ -4,5 +4,7 @@
     <corners
             android:radius="5dp" />
     <solid
-            android:color="#fff" />
+            android:color="@color/backgroundTextTest" />
+
+    <stroke android:width="2dip" android:color="#FF6859"/>
 </shape>

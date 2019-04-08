@@ -11,9 +11,7 @@ class MainRemoteDataSource : MainDataSource {
     private var TAG = "MainRemoteDataSource"
 
     override fun getAccess(userId: String) {
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection("admins")
+        FirebaseFirestore.getInstance().collection("admins")
             .document(userId)
             .get()
             .addOnSuccessListener { document ->
